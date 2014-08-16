@@ -32,6 +32,11 @@ var mySpreadsheetKey = "1uiY2vHH2xcWre7Z93L_IDvxpilNnQnIRHqxfWnZljJA"
 // the past 30 days.) 
 var emailThreadsDateRange = "30d"
 
+// The search query that returns all the threads that will be considered when
+// looking for existing responses. It's in "normal gmail query" format, i.e.,
+// whatever you allowed to enter into the Gmail search bar is game here.
+var threadsSearchQuery = "from:me newer_than:" + emailThreadsDateRange
+
 // Caps the number of threads in the past emailThreadsDateRange 
 // that are considered. Cannot exceed 500 by Google rule.
 var maxEmailThreads = 250
@@ -51,9 +56,7 @@ function isFromMe(message) {
 };
 
 function getThreads() {
-  // Others can consider changing this line based on the queries that are
-  // most appropriate for their email patterns.
-  return GmailApp.search("from:me newer_than:" + emailThreadsDateRange, 0, maxEmailThreads)
+  return GmailApp.search(threadsSearchQuery, 0, maxEmailThreads)
 };
 
 function  getExpectedResponseThreads() {
