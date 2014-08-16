@@ -16,7 +16,7 @@
 /////////////////////////////////////////////////
 
 // Use your email address here.
-var myEmailAddress = "nels.beckman@gmail.com"
+var myEmailAddress = "men@gmail.com"
 
 // Use your output spreadsheet here.
 // Pulled from the spreadsheet's url:
