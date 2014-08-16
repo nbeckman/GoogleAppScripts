@@ -51,7 +51,9 @@ function isFromMe(message) {
 };
 
 function getThreads() {
-  return GmailApp.search("is:important from:me newer_than:" + emailThreadsDateRange, 0, maxEmailThreads)
+  // Others can consider changing this line based on the queries that are
+  // most appropriate for their email patterns.
+  return GmailApp.search("from:me newer_than:" + emailThreadsDateRange, 0, maxEmailThreads)
 };
 
 function  getExpectedResponseThreads() {
