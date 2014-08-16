@@ -34,7 +34,7 @@ var emailThreadsDateRange = "30d"
 
 // The search query that returns all the threads that will be considered when
 // looking for existing responses. It's in "normal gmail query" format, i.e.,
-// whatever you allowed to enter into the Gmail search bar is game here.
+// whatever you're allowed to enter into the Gmail search bar is game here.
 var threadsSearchQuery = "from:me newer_than:" + emailThreadsDateRange
 
 // Caps the number of threads in the past emailThreadsDateRange 
@@ -67,7 +67,7 @@ function  getExpectedResponseThreads() {
 // thread where the last message was not from me, return the difference in
 // seconds between the time of the last message and now. In other words,
 // if we expect me to respond to these emails, this is the minimum delay it
-// will when I eventually do respond to them. (And as such, the given threads
+// will be when I eventually do respond to them. (And as such, the given threads
 // should be threads that I am likely to respond to.)
 function computeOutstandingDelays(threads) {
   var result = []
@@ -132,22 +132,18 @@ function computeMean(delays) {
 // delay). Percentile is expected to be between 0 and 1, so
 // 0.99 for 99th percentile.
 function computePercentile(percentile, delays) {
-  Logger.log("Computing %s percentile of %s elements", percentile, delays.length)
   delays.sort(function (a, b) {
    return a > b ? 1 : a < b ? -1 : 0;
   });
   var length_percentile = delays.length * percentile
   var length_percentile_ceiling = Math.ceil(length_percentile)
   if (length_percentile == length_percentile_ceiling) {
-    Logger.log("length_percentile == length_percentile_ceiling: %s", length_percentile)
     // Use this value and the next one, adjusted for indices.
     var index = length_percentile - 1
     var index_plus_one = length_percentile
     if (index >= delays.length || index_plus_one >= delays.length) {
-      Logger.log("index >= delays.length || index_plus_one >= delays.length: %s", index)
       return delays[delays.length - 1] 
     } else {
-      Logger.log("Returning average from index %s, which is %s and %s", index, delays[index], delays[index_plus_one])
       return (delays[index] + delays[index_plus_one]) / 2.0 
     }
   } else {
