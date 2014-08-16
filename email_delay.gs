@@ -1,8 +1,8 @@
 // Email Delay:
-// Email delay computes the mean, median and std. deviation of your email
-// response times. You can use it to track how busy you are (or at least how
-// long it takes you to reply to emails!). 
-// - Response time is computed from actual responses in inbox over the past XX days
+// Email delay computes various statistics on your email
+// response times (median, 95%ile, 99%ile, mean, stdev). You can use it to track 
+// how busy you are (or at least how long it takes you to reply to emails!). 
+// - Response time is computed from responses you've written over the past XX days
 //   plus emails in priority inbox that have not yet been responded to.
 // - Output is written to a spreadsheet of your choosing.
 // - To use, update the email address in 'myEmailAddress' and the spreadsheet in
